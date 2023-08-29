@@ -43,18 +43,39 @@ ros::NodeHandle n;
 	while (ros::ok())
   {
 	geometry_msgs::Twist my_vel;
+	if(absx>0.5){
 	my_vel.linear.x = -1.0;
 	my_vel.linear.y = 1.0;
 	my_vel.linear.z = 0.0;
 	my_vel.angular.x = 0.0;
 	my_vel.angular.y = 0.0;
 	my_vel.angular.z = 0.0;
-	
+	}
+	else{
+		break;
+	}
 	pub.publish(my_vel);
-	ros::spin();
+	ros::spinOnce();
 	loop_rate.sleep();
   }
-	
+	while (ros::ok())
+  {
+	geometry_msgs::Twist my_vel;
+	if(absy>0.5){
+	my_vel.linear.x = 0.0;
+	my_vel.linear.y = -1.0;
+	my_vel.linear.z = 0.0;
+	my_vel.angular.x = 0.0;
+	my_vel.angular.y = 0.0;
+	my_vel.angular.z = 0.0;
+	}
+	else{
+		break;
+	}
+	pub.publish(my_vel);
+	ros::spinOnce();
+	loop_rate.sleep();
+  }
 
 	return 0;
 }
@@ -62,6 +83,7 @@ void turtleCallback(const turtlesim::Pose::ConstPtr& msg)
 {
 	ROS_INFO("Turtle subscriber@[%f, %f, %f]",
 	msg->x, msg->y, msg->theta);
-	absx, absy, abstheta =msg->x, msg->y, msg->theta;
-
+	absx =msg->x;
+	absy=msg->y;
+	abstheta=msg->theta;
 }
