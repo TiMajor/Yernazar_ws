@@ -1,0 +1,2 @@
+ex1:turtlebot_controller
+-DCATKIN_DEVEL_PREFIX=/home/yernazar/Yernazar_ws/devel -DCMAKE_INSTALL_PREFIX=/home/yernazar/Yernazar_ws/install -G Unix Makefiles
